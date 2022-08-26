@@ -1,6 +1,7 @@
 The MIT License (MIT)
 =====================
 
+Copyright © `2022` `Chaoya Li <harry75369@gmail.com>`
 Copyright © `2017` `Francisco Lopes da Silva`
 
 Permission is hereby granted, free of charge, to any person

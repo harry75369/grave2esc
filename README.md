@@ -1,23 +1,32 @@
 # grave2esc
 
-Transforming the GRAVE key(\`/~) to the ESC key for some 60%/70% layout keyboards.
+Transforming the GRAVE/TILDE key(\`/~) to the ESC key, and vice-versa, for some 60%/70% layout keyboards.
 
-NOTE: this tool is only for Linux, used together with [Interception Tools][interception-tools] framework.
+NOTE: this tool is only for Linux, as a plugin for [Interception Tools][interception-tools] framework.
 
-There are alternatives for other operating systems:
+There are alternatives for other operating systems, for example:
 - macOS: [Karabiner][]
 - Windows: [Interception library][interception]
 
 ## What is it?
 
-- Turn GRAVE into ESC
-- Turn ESC (which is commonly Fn+GRAVE) into GRAVE
-- Keep Shift+GRAVE as TILDE
+Depending which physical key you have on your keyboard
+
+- If you only have ESC key
+  - You already have physical ESC key, nice!
+  - Turn Shift+ESC into TILDE
+  - Turn Alt+ESC into GRAVE
+- If you only have GRAVE key
+  - Turn GRAVE into ESC, and at the same time:
+  - Turn Shift+GRAVE into TILDE
+  - Turn Alt+GRAVE into GRAVE
 
 ## Why?!
 
-Because for smaller keyboard, esp. of 60%/70% layouts, the GRAVE key and the ESC key
-may not co-exsit. This bothers particularly Vim users a lot!
+Because for smaller keyboards, esp. of 60%/70% layouts, the GRAVE key and the ESC key
+may not co-exist. And some keyboard firmware has ridiculous settings about how to
+switch between them, let alone some firmware that is not customizable at all. This
+bothers particularly Vim users a lot!
 
 ## Dependencies
 
@@ -47,6 +56,8 @@ usage: grave2esc [-h]
 
 options:
     -h        show this message and exit
+    -m mode   0: (default) the physical key is GRAVE
+              1: the physical key is ESC
 ```
 
 `grave2esc` is an [_Interception Tools_][interception-tools] plugin. A suggested
@@ -82,7 +93,7 @@ and then start it with `sudo systemctl enable --now udevmon`
 
 ## History
 
-This library is forked from [`caps2esc`][caps2esc] project.
+This library is forked from and based on [`caps2esc`][caps2esc] project.
 
 ## License
 

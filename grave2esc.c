@@ -22,7 +22,8 @@ void print_usage(FILE *stream, const char *program) {
             "options:\n"
             "    -h        show this message and exit\n"
             "    -m mode   0: (default) the physical key is GRAVE\n"
-            "              1: the physical key is ESC\n",
+            "              1: the physical key is ESC\n"
+            "    -c        enable capslock as control\n",
             program);
     // clang-format on
 }
@@ -37,7 +38,7 @@ void write_event(const struct input_event *event) {
     }
 }
 
-void write_event_with_mode(struct input_event *event, int mode) {
+void write_event_with(struct input_event *event, int mode, int caps2ctrl) {
     enum {
         MOD_NONE     = 0x0,
         MOD_SHIFT    = 0x1,
@@ -106,6 +107,10 @@ void write_event_with_mode(struct input_event *event, int mode) {
                 }
             }
         }
+
+        if (caps2ctrl && event->code == KEY_CAPSLOCK) {
+          event->code = KEY_LEFTCTRL;
+        }
     }
 
     // write event
@@ -114,13 +119,17 @@ void write_event_with_mode(struct input_event *event, int mode) {
 
 int main(int argc, char *argv[]) {
     int mode = 0;
+    int caps2ctrl = 0;
 
-    for (int opt; (opt = getopt(argc, argv, "hm:")) != -1;) {
+    for (int opt; (opt = getopt(argc, argv, "hcm:")) != -1;) {
         switch (opt) {
             case 'h':
                 return print_usage(stdout, argv[0]), EXIT_SUCCESS;
             case 'm':
                 mode = atoi(optarg);
+                continue;
+            case 'c':
+                caps2ctrl = 1;
                 continue;
         }
 
@@ -140,6 +149,6 @@ int main(int argc, char *argv[]) {
             continue;
         }
 
-        write_event_with_mode(&event, mode);
+        write_event_with(&event, mode, caps2ctrl);
     }
 }

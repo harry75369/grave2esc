@@ -24,9 +24,9 @@ Depending which physical key you have on your keyboard
 ## Why?!
 
 Because for smaller keyboards, esp. of 60%/70% layouts, the GRAVE key and the ESC key
-may not co-exist. And some keyboard firmware has ridiculous settings about how to
-switch between them, let alone some firmware that is not customizable at all. This
-bothers particularly Vim users a lot!
+may not co-exist. And some keyboard firmware has ridiculous behaviour switching
+between them, let alone some firmware that is not customizable at all. This bothers
+particularly Vim users a lot!
 
 ## Dependencies
 
@@ -58,6 +58,7 @@ options:
     -h        show this message and exit
     -m mode   0: (default) the physical key is GRAVE
               1: the physical key is ESC
+    -c        enable capslock as control
 ```
 
 `grave2esc` is an [_Interception Tools_][interception-tools] plugin. A suggested
@@ -67,10 +68,10 @@ README][interception-tools] for alternatives) is:
 (e.g. `/etc/udevmon.yaml`)
 
 ```yaml
-- JOB: intercept -g $DEVNODE | grave2esc | uinput -d $DEVNODE
+- JOB: intercept -g $DEVNODE | grave2esc -m 0 -c | uinput -d $DEVNODE
   DEVICE:
     EVENTS:
-      EV_KEY: [KEY_GRAVE, KEY_ESC, KEY_LEFTSHIFT, KEY_RIGHTSHIFT]
+      EV_KEY: [KEY_GRAVE, KEY_ESC, KEY_LEFTSHIFT, KEY_RIGHTSHIFT, KEY_LEFTALT, KEY_RIGHTALT]
 ```
 
 Then enable and start `udevmon` service, for example, by creating systemd service file

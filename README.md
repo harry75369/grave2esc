@@ -12,14 +12,14 @@ There are alternatives for other operating systems, for example:
 
 Depending which physical key you have on your keyboard
 
-- If you only have ESC key
-  - You already have physical ESC key, nice!
-  - Turn Shift+ESC into TILDE
-  - Turn Alt+ESC into GRAVE
-- If you only have GRAVE key
+- If you only have GRAVE key (mode 0)
   - Turn GRAVE into ESC, and at the same time:
   - Turn Shift+GRAVE into TILDE
   - Turn Alt+GRAVE into GRAVE
+- If you only have ESC key (mode 1)
+  - You already have physical ESC key, nice!
+  - Turn Shift+ESC into TILDE
+  - Turn Alt+ESC into GRAVE
 
 ## Why?!
 

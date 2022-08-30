@@ -105,6 +105,10 @@ void write_event_with(struct input_event *event, int mode, int caps2ctrl) {
                     write_event(&syn);
                     event->code = KEY_GRAVE;
                 }
+                if (event->value == 0) {
+                    write_event(&grave_up);
+                    write_event(&syn);
+                }
             }
         }
 
